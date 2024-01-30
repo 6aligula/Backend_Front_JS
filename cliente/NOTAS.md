@@ -1,0 +1,27 @@
+* ESTO ES PARA ENV:
+
+- BASE DE DATOS SQL:
+MYSQL_HOST=localhost
+MYSQL_USER=fresnilloarevaloalba@gmail.com
+MYSQL_PASSWORD=a1234567
+MYSQL_DATABASE=instahab
+
+- PARA IMÁGENES:
+UPLOADS_DIR=uploads
+
+- PUERTO:
+PORT=5173
+
+- BREVO:
+SMTP_HOST=smtp-relay.brevo.com
+SMTP_PORT=587
+SMTP_USER=fresnilloarevaloalba@gmail.com
+SMTP_PASS=YnKycbjswDrkTvgO
+
+- SECRETO:
+SECRET=secretosuperpoderoso
+
+- CLOUDINARY:
+CLOUDINARY_CLOUD_NAME=daggqegvl,
+CLOUDINARY_API_KEY=377383941535227,
+CLOUDINARY_ACCESS_KEY=i4rhnKykrp8TkQI9FLocIQ9fQxc

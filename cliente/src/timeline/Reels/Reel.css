@@ -1,0 +1,46 @@
+.reel {
+    width: 550px;
+    margin: 30px 40px 50px 40px;
+}
+
+.reel__header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reel__headerAuthor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bolder;
+}
+
+.reel_headerAuthor > span {
+    color: grey;
+    font-size: 15px;
+}
+
+.reel__image > img {
+    width: 100%;
+    border-radius: 6px;
+    border: 0.6px solid;
+}
+
+.reel__footerIcons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reelIcon {
+    padding: 7px;
+    font-size: 30px;
+}
+
+.reelIcon:hover {
+    cursor: pointer;
+}
