@@ -3,10 +3,10 @@ import morgan from 'morgan';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import routes from './routes/index.js';
-import { errorController,notFoundController } from './middlewares/index.js';
 import { PORT, UPLOADS_DIR } from '../env.js';
 import dotenv from 'dotenv';
 import listEndpoints from 'express-list-endpoints';
+import { errorController,notFoundController } from './middlewares/index.js';
 
 const server = express();
 
@@ -20,6 +20,8 @@ server.use(express.static(UPLOADS_DIR));
 
 //Middleware que desencripta un body en formato "form-data" creando la propiedad body y la propiedad files en el objeto request
 server.use(fileUpload());
+// Aquí añades la ruta de prueba
+//server.get('/test', (req, res) => res.send('Test route works!'));
 
 // Middleare de registro de solicitudes
 server.use((req, res, next) => {
@@ -29,6 +31,7 @@ server.use((req, res, next) => {
 
 // Middleware de rutas
 server.use('/', routes);
+
 
 // Mddleware de método HTTP no permitido
 server.use((err, req, res, next) => {

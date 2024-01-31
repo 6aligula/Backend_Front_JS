@@ -11,9 +11,9 @@ const updateUserRegCodeModel = async (registrationCode) => {
         [registrationCode]
     );
 
-    if(!users.length < 1){
+    if(users.length === 0){
         notFoundError('usuario');
-    }
+    }    
 
     await pool.query(
         `

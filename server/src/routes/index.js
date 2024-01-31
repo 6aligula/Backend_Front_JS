@@ -4,7 +4,7 @@ import userRoutes from './userRoutes.js'
 
 const router = express.Router();
 
-router.use('/reels', reelRoutes);
 router.use('/users', userRoutes);
+router.use('/reels', reelRoutes);
 
 export default router;

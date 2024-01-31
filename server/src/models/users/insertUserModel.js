@@ -10,7 +10,7 @@ import {
 
 const insertUserModel = async (username, email, password, registrationCode) => {
     const pool = await getPool();
-
+    console.log("insert", username);
     let [users] = await pool.query(
         `
             SELECT id FROM users WHERE username = ?
@@ -41,7 +41,7 @@ const insertUserModel = async (username, email, password, registrationCode) => {
 
             Gracias por registrarse en  📷 INSTAHAB. Para activar tu cuenta haga click en el siguiente enlace:
 
-            <a href="http://localhost:3060/auth/activate/${registrationCode}">❤️ Activar mi cuenta ❤️ </a>
+            <a href="http://localhost:3001/users/auth/activate/${registrationCode}">❤️ Activar mi cuenta ❤️ </a>
     `
 
     await sendMailUtil(email,emailSubject,emailBody);

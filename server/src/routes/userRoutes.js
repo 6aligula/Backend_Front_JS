@@ -17,12 +17,12 @@ import{
 }  from '../middlewares/index.js';
 
 const router = express.Router();
-
+//router.get('/test', (req, res) => res.send('Test route works!'));
 //Crear usuario pendiente de activar 
-router.post('/api/users/register', newUserController);
+router.post('/register', newUserController);
 
 //Validar un usuario
-router.get('/api/users/validate/:registrationCode', validateUserController)
+router.get('/auth/activate/:registrationCode', validateUserController)
 
 //Login de usuario
 router.post('/api/users/login', loginUserController);
@@ -34,7 +34,7 @@ router.post('/api/users/logout', authUserController, logoutUserController);
 router.get('/api/user/:userId',userExistsController, getUserProfileController);
 
 //obtener el perfil privado del usuario
-router.get('/api/users',authUserController, getOwnUserController,getOwnUserController);
+router.get('/api/users',authUserController, getOwnUserController);
 
 //recuperar contraseña --> blanqueo --> envío de mail
 router.post('/api/users/password/recover', sendRecoverPasswordController);
