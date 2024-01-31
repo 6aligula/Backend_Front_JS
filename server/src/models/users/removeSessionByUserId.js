@@ -1,4 +1,4 @@
-import getPool from '../../db/getPool.js';
+import {getPool} from '../../db/getPool.js';
 
 const removeSessionByUserId = async (userId) => {
   try {

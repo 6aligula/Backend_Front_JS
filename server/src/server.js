@@ -6,24 +6,20 @@ import routes from './routes/index.js';
 import { PORT, UPLOADS_DIR } from '../env.js';
 import dotenv from 'dotenv';
 import listEndpoints from 'express-list-endpoints';
-import { errorController,notFoundController } from './middlewares/index.js';
+import { errorController, notFoundController } from './middlewares/index.js';
+import { testDatabaseConnection } from './db/getPool.js'; // Asegúrate de que la ruta sea correcta
+
+dotenv.config();
 
 const server = express();
 
-dotenv.config();
-//const UPLOADS_DIR = process.env.UPLOADS_DIR || '';
-
 server.use(morgan('dev'));
 server.use(express.json());
-server.use(cors());//acepta pedidos desde cualquier IP
+server.use(cors()); // Acepta pedidos desde cualquier IP
 server.use(express.static(UPLOADS_DIR));
-
-//Middleware que desencripta un body en formato "form-data" creando la propiedad body y la propiedad files en el objeto request
 server.use(fileUpload());
-// Aquí añades la ruta de prueba
-//server.get('/test', (req, res) => res.send('Test route works!'));
 
-// Middleare de registro de solicitudes
+// Middleware de registro de solicitudes
 server.use((req, res, next) => {
     console.log(`${req.method} request received for ${req.url}`);
     next();
@@ -32,8 +28,7 @@ server.use((req, res, next) => {
 // Middleware de rutas
 server.use('/', routes);
 
-
-// Mddleware de método HTTP no permitido
+// Middleware de método HTTP no permitido
 server.use((err, req, res, next) => {
     if (req.method === 'POST' && req.url === '/users/logout/' && err.status === 404) {
         return res.status(405).json({
@@ -45,19 +40,31 @@ server.use((err, req, res, next) => {
     next();
 });
 
-//middleware de ruta no encontrada
+// Middleware de ruta no encontrada
 server.use(notFoundController);
 
-//middleware de manejo de errores
+// Middleware de manejo de errores
 server.use(errorController);
 
-//Ponemos el servidor a escuchar peticiones en un puerto dato
-server.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+// Función para iniciar el servidor
+const startServer = async () => {
+    try {
+        // Verificar conexión a la base de datos antes de iniciar el servidor
+        await testDatabaseConnection();
+        console.log('Conexión a la base de datos verificada con éxito');
 
-const serverEndpoints = listEndpoints(server);
-console.log('Rutas de la API:');
-serverEndpoints.forEach(route => console.log(route.path));
+        // Iniciar el servidor para escuchar en el puerto especificado
+        server.listen(PORT, () => {
+            console.log(`Servidor escuchando en http://192.168.1.158:${PORT}`);
+            const serverEndpoints = listEndpoints(server);
+            console.log('Rutas de la API:');
+            serverEndpoints.forEach(route => console.log(route.path));
+        });
+    } catch (error) {
+        console.error('No se pudo establecer conexión con la base de datos:', error);
+        process.exit(1); // Finaliza el proceso si no se puede conectar a la base de datos
+    }
+};
 
-export default server;
+// Llama a la función para iniciar el servidor
+startServer();

@@ -1,4 +1,4 @@
-import getPool from "../../db/getPool.js";
+import {getPool} from "../../db/getPool.js";
 
 const deleteCommentModel = async (userId, reelId, commentId) => {
 

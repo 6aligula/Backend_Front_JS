@@ -1,4 +1,4 @@
-import getPool from '../db/getPool.js';
+import {getPool} from '../db/getPool.js';
 import { notFoundError } from '../services/errorService.js';
 
 const userExistsController = async (req, res, next) => {

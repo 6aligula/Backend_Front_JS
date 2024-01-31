@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import insertUserModel from '../../models/users/insertUserModel.js';
+import randomstring from 'randomstring';
 
 // Define el esquema de validación
 const userSchema = Joi.object({
@@ -12,10 +13,10 @@ const newUserController = async (req, res, next) => {
     try {
         // Extrae los datos del cuerpo de la solicitud
         const { username, email, password } = req.body;
-        console.log(username, email, password);
+        //console.log(username, email, password);
         // Valida los datos contra el esquema
         const { error, value } = userSchema.validate({ username, email, password });
-        console.log("1", value);
+        //console.log("1", value);
         if (error) {
             // Si hay un error de validación, envía una respuesta de error
             return res.status(400).send({
@@ -26,7 +27,9 @@ const newUserController = async (req, res, next) => {
         }
 
         // Si la validación es exitosa, procede con la lógica de negocio
+        console.log("validacion ok");
         const registrationCode = randomstring.generate(30);
+        console.log("registration code"), registrationCode;
         await insertUserModel(username, email, password, registrationCode);
         console.log("ok");
         res.send({

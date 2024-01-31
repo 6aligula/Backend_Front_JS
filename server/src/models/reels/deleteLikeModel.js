@@ -1,4 +1,4 @@
-import getPool from "../../db/getPool.js";
+import {getPool} from "../../db/getPool.js";
 
 const deleteLikeModel = async (userId, reelId, likeId) => {
     const pool = await getPool();

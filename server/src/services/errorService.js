@@ -1,26 +1,25 @@
+
 export const notFoundError = (resource) => {
     throw {
         httpStatus: 404,
         code: 'RESOURCE_NOT_FOUND',
-        message: `El recurso requerido '${ resource }' no existe`,
+        message: `El recurso requerido '${ resource }' no existe, ostia`,
     };
 };
-
 export const userAlreadyRegisteredError = () => {
-    throw {
-        httpStatus: 409,// conflicto
-        code: 'USER_ALREADY_REGISTERED',
-        message: `El nombre de usuario ya se encuentra registrado`,
-    };
+    const error = new Error(`El nombre de usuario ya se encuentra registrado`);
+    error.httpStatus = 409;
+    error.code = 'USER_ALREADY_REGISTERED';
+    throw error;
 };
 
 export const emailAlreadyRegisteredError = () => {
-    throw {
-        httpStatus: 409, // conflicto
-        code: 'EMAIL_ALREADY_REGISTERED',
-        message: `El email ya se encuentra registrado`,
-    };
+    const error = new Error(`El email ya se encuentra registrado`);
+    error.httpStatus = 409;
+    error.code = 'EMAIL_ALREADY_REGISTERED';
+    throw error;
 };
+
 
 export const invalidCredentialsError = () => {
     throw {

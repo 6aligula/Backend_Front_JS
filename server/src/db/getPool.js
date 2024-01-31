@@ -40,6 +40,16 @@ const getPool = async () => {
      throw new Error('Error al obtener el pool de conexiones.');
   }
 };
+// Función para probar la conexión a la base de datos.
+const testDatabaseConnection = async () => {
+  try {
+    const pool = await getPool();
+    const [rows] = await pool.query('SELECT 1 + 1 AS result');
+    console.log('Resultado de la prueba de conexión a la base de datos:', rows);
+  } catch (err) {
+    console.error('La prueba de conexión a la base de datos falló:', err);
+  }
+};
 
 // Exportamos la función.
-export default getPool;
+export { getPool, testDatabaseConnection };

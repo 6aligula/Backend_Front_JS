@@ -25,28 +25,28 @@ router.post('/register', newUserController);
 router.get('/auth/activate/:registrationCode', validateUserController)
 
 //Login de usuario
-router.post('/api/users/login', loginUserController);
+router.post('/login', loginUserController);
 
 //Logout de usuario
-router.post('/api/users/logout', authUserController, logoutUserController);
+router.post('/logout', authUserController, logoutUserController);
 
 //obtener el perfil publico del usuario
-router.get('/api/user/:userId',userExistsController, getUserProfileController);
+router.get('/user/:userId',userExistsController, getUserProfileController);
 
 //obtener el perfil privado del usuario
-router.get('/api/users',authUserController, getOwnUserController);
+router.get('',authUserController, getOwnUserController);
 
 //recuperar contraseña --> blanqueo --> envío de mail
-router.post('/api/users/password/recover', sendRecoverPasswordController);
+router.post('/password/recover', sendRecoverPasswordController);
 
 //toma el codigo de recuperación enviado en el endpoint anterior y
 //actualiza la contraseña en la base de datos
-router.put('/api/users/password', editUserPasswordController);
+router.put('/password', editUserPasswordController);
 
 // Editar el avatar de un usuario.
-router.put('/api/users/avatar', authUserController, userExistsController, editUserAvatarController);
+router.put('/avatar', authUserController, userExistsController, editUserAvatarController);
   
 // Cambiar el rol de un usuario
-router.put('/api/users/:userId/role', authUserController, changeUserRoleController);
+router.put('/:userId/role', authUserController, changeUserRoleController);
   
 export default router;

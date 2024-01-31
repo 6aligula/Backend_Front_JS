@@ -1,4 +1,4 @@
-import getPool from '../../db/getPool.js';
+import {getPool} from '../../db/getPool.js';
 
 const insertPhotoModel = async (photoName, reelId) => {
     const pool = await getPool();

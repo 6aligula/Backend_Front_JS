@@ -1,4 +1,4 @@
-import getPool from "../../db/getPool.js";
+import {getPool} from "../../db/getPool.js";
 import sendMailUtil from "../../util/sendMailUtil.js";
 
 const updateRecoverPasswordModel = async (email, recoverPassCode) => {

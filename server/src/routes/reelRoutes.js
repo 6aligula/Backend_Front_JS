@@ -24,20 +24,20 @@ import {
 } from '../controllers/reels/index.js';
 
 // Configuración de las rutas
-router.post('/api/reel', authUserController, userExistsController, newReelController);
+router.post('/reel', authUserController, userExistsController, newReelController);
 
-router.get('/api/reel', listReelsController);
+router.get('/reel', listReelsController);
 
-router.get('/api/reel/:reelId', reelExistsController, getReelController);
+router.get('/reel/:reelId', reelExistsController, getReelController);
 
-router.post('/api/reel/:reelId/likes',
+router.post('/reel/:reelId/likes',
             authUserController,
             userExistsController,
             reelExistsController,
             likeReelController  
 );
 
-router.post('/api/reel/:reelId/photos',
+router.post('/reel/:reelId/photos',
             authUserController,
             userExistsController,
             reelExistsController,
@@ -45,21 +45,21 @@ router.post('/api/reel/:reelId/photos',
             addReelPhotoController
 );
 
-router.post('/api/reel/:reelId/comments',
+router.post('/reel/:reelId/comments',
             authUserController,
             userExistsController,
             reelExistsController,
             commentReelController.addComment
 );
 
-router.delete('/api/deleteComment/:reelId/:commentId',
+router.delete('/deleteComment/:reelId/:commentId',
             authUserController,
             userExistsController,
             reelExistsController,
             deleteCommentController
 )
 
-router.delete('/api/deleteLike/:reelId/:likeId',
+router.delete('/deleteLike/:reelId/:likeId',
             authUserController,
             userExistsController,
             reelExistsController,

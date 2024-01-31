@@ -1,4 +1,4 @@
-import getPool from "../../db/getPool.js";
+import {getPool} from "../../db/getPool.js";
 import bcrypt from 'bcrypt';
 import { recoveryCodeError } from "../../services/errorService.js";
 import selectUserByEmailModel from "./selectUserByEmailModel.js";

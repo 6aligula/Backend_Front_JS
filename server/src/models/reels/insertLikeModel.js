@@ -2,7 +2,7 @@
 import { v4 as uuid } from 'uuid';
 
 // Importamos la función que devuelve una conexión con la base de datos.
-import getPool from '../../db/getPool.js';
+import {getPool} from '../../db/getPool.js';
 
 // Importamos los errores.
 import { likeAlreadyExistsError } from '../../services/errorService.js';
